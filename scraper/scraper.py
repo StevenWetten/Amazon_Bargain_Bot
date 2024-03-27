@@ -119,7 +119,7 @@ class AmazonScraper:
 
     connection = mysql.connector.connect(host = 'clnodevm222-1.clemson.cloudlab.us', port = '32010', user = 'steven', password = 'password', auth_plugin = 'mysql_native_password')
     cursor = connection.cursor()
-    cursor.execute("CREATE TABLE csc468.table10 (Description VARCHAR(255), Price VARCHAR(255), Rating VARCHAR(255), Review VARCHAR(255), URL VARCHAR(2000))")
+    cursor.execute("CREATE TABLE csc468.table10 (Description VARCHAR(1000), Price VARCHAR(1000), Rating VARCHAR(1000), Review VARCHAR(1000), URL VARCHAR(2000))")
 
     for index, row in file.iterrows():
       sql = "INSERT INTO csc468.table10 (Description, Price, Rating, Review, URL) VALUES (%s, %s, %s, %s, %s)"
