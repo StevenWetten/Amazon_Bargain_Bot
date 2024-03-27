@@ -108,7 +108,7 @@ class AmazonScraper:
 
     for _ in records:
       file_name = "{}_{}.csv".format(self.category_name, today)
-      f = open(filename, "w", newline = '', encoding = 'utf-8')
+      f = open(file_name, "w", newline = '', encoding = 'utf-8')
       writer = csv.writer(f)
       writer.writerow(['Descrption', 'Price', 'Rating', 'Review Count', 'Product URL'])
       writer.writerows(records)
