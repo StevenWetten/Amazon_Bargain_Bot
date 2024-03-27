@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amazon-scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amazon-scraper
+  template:
+    metadata:
+      labels:
+        app: amazon-scraper
+    spec:  
+      containers:
+      - name: amazon-scraper
+        image: stevenwetten/mysql:scraper
+        command: ["python", "-u"]
+        args: ["scraper.py"]
+        env:
+        - name: MYSQL_HOST
+          value: "clnodevm222-1.clemson.cloudlab.us"
+        - name: MYSQL_PORT
+          value: "32010"
+        - name: MYSQL_USER
+          value: "steven"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        - name: MYSQL_DATABASE
+          value: "csc468"
