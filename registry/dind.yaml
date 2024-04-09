@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: dind
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dind
+  template:
+    metadata:
+      labels:
+        app: dind
+    spec:
+      containers:
+        - name: dind
+          image: "docker:dind"
+          imagePullPolicy: Always
+          command: ["dockerd", "--host", "tcp://0.0.0.0:2375"]
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
+            - name: registry-cert
+              mountPath: /etc/docker/certs.d
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: registry-cert
+          hostPath:
+            path: /opt/keys/certs.d

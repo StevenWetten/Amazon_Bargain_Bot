@@ -1,0 +1,22 @@
+[req]
+default_bits  = 2048
+distinguished_name = req_distinguished_name
+req_extensions = req_ext
+x509_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+countryName = US
+stateOrProvinceName = PA
+localityName = West Chester
+organizationName = WCU Computer Science
+commonName = 120.0.0.1: WCU Computer Science
+
+[req_ext]
+subjectAltName = @alt_names
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = IPADDR
