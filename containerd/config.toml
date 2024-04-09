@@ -1,4 +1,0 @@
-version = 2
-
-root = "/image/var/lib/containerd"
-state = "/image/run/containerd"
