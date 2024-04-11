@@ -1,1 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crawler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crawler
+  template:
+    metadata:
+      labels:
+        app: crawler
+    spec:
+      containers:
+        - name: crawler
+          image: stevenwetten/mysql:bbotsc
+          ports:
+            - name: port
+              containerPort: 3306
 
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    role: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: app
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+        - name: app
+          image: stevenwetten/mysql:bbotdbase
+          resources:
+            requests:
+              cpu: 10m
+          ports:
+            - containerPort: 3306
