@@ -28,6 +28,3 @@ spec:
           value: "password"
         - name: MYSQL_DATABASE
           value: "csc468"
-        resources:
-          requests:
-            cpu: "100m"  
