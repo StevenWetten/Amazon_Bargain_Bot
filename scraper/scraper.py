@@ -33,7 +33,13 @@ class AmazonScraper:
 
   def get_category_url(self):
     try:
-      self.category_name = input("\n Search: ")
+      connect = mysql.connector.connect(host = 'mysql', port = '3306', user = 'bbot', password = 'csc468g6', auth_plugin = 'mysql_native_password')
+      cu = connect.cursor()
+      cu.execute("SELECT * FROM bargainBot.search")
+      self.category_name = ''.join(cu.fetchone())
+      cu.reset()
+      cu.execute("TRUNCATE bargainBot.search")
+      connect.close()
     except EOFError:
       print("EOFError")
       exit()
@@ -117,12 +123,13 @@ class AmazonScraper:
     file = pd.read_csv(file_name, delimiter=',')
     file = file.where((pd.notnull(file)), None)
 
-    connection = mysql.connector.connect(host = 'clnodevm222-1.clemson.cloudlab.us', port = '32010', user = 'steven', password = 'password', auth_plugin = 'mysql_native_password')
+    connection = mysql.connector.connect(host = 'mysql', port = '3306', user = 'bbot', password = 'csc468g6', auth_plugin = 'mysql_native_password')
     cursor = connection.cursor()
-    cursor.execute("CREATE TABLE csc468.table10 (Description VARCHAR(1000), Price VARCHAR(1000), Rating VARCHAR(1000), Review VARCHAR(1000), URL VARCHAR(2000))")
+    cursor.execute("DROP TABLE IF EXISTS bargainBot.results")
+    cursor.execute("CREATE TABLE bargainBot.results (Description VARCHAR(1000), Price VARCHAR(1000), Rating VARCHAR(1000), Review VARCHAR(1000), URL VARCHAR(2000))")
 
     for index, row in file.iterrows():
-      sql = "INSERT INTO csc468.table10 (Description, Price, Rating, Review, URL) VALUES (%s, %s, %s, %s, %s)"
+      sql = "INSERT INTO bargainBot.results (Description, Price, Rating, Review, URL) VALUES (%s, %s, %s, %s, %s)"
       val = (row['Description'], row['Price'], row['Rating'], row['Review Count'], row['Product URL'])
       cursor.execute(sql, val)
 
