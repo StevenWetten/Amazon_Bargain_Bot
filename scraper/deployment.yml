@@ -19,7 +19,7 @@ spec:
         args: ["scraper.py"]
         env:
         - name: MYSQL_HOST
-          value: "clnodevm222-1.clemson.cloudlab.us"
+          value: "clnodevm239-1.clemson.cloudlab.us"
         - name: MYSQL_PORT
           value: "32010"
         - name: MYSQL_USER
@@ -28,3 +28,6 @@ spec:
           value: "password"
         - name: MYSQL_DATABASE
           value: "csc468"
+        resources:
+          requests:
+            cpu: "0.3"  
