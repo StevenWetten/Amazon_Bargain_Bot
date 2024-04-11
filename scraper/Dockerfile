@@ -10,4 +10,4 @@ RUN pip install selenium
 RUN pip install webdriver_manager
 RUN pip install mysql-connector-python
 RUN pip install pandas
-CMD ["python", "./amazon_scraper.py"]
+CMD ["python", "./scraper.py"]
