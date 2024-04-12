@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Product</title>
+    <title>Product Search UI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Add Product</h1>
-    <form method="post">
-        <label for="name">Product Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
-        <label for="category">Category:</label><br>
-        <input type="text" id="category" name="category" required><br>
-        <label for="price">Price:</label><br>
-        <input type="number" id="price" name="price" required step="0.01"><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search for products...">
+    </div>
+
+    <div class="filters">
+        <label for="minRating">Minimum Rating:</label>
+        <select id="minRating">
+            <option value="0">Any Rating</option>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+        </select>
+
+        <label for="priceRange">Price Range:</label>
+        <input type="range" id="priceRange" min="0" max="1000" value="500" step="50" oninput="updatePriceValue(this.value)">
+        <span id="priceValue">$500</span>
+
+        <label for="minReviews">Minimum Reviews:</label>
+        <input type="number" id="minReviews" min="0" value="10">
+    </div>
+
+    <button onclick="applyFilters()">Search</button>
+
+    <div class="results">
+        <!-- Results will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
