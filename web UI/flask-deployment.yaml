@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: yourusername/flask-app:latest  # Update with your Docker image
+        image: stevenwetten/mysql:bbotdbase  # Update with your Docker image
         ports:
         - containerPort: 5000
