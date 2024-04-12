@@ -9,9 +9,9 @@ def get_db_connection():
     try:
         connection = mysql.connector.connect(
             host='172.17.0.2',  # Kubernetes service name for MySQL
-            user='root',           # Update with your MySQL user
-            password='password',   # Update with your MySQL password
-            database='bargainbot'  # Update with your MySQL database name
+            user='bbot',           # Update with your MySQL user
+            password='csc468g6',   # Update with your MySQL password
+            database='bargainBot'  # Update with your MySQL database name
         )
     except Error as e:
         print(f"The error '{e}' occurred")
