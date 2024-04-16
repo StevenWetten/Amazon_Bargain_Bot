@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: web-ui
-        image: yourusername/web-ui:latest  # Use the correct image path
+        image: 11jamesp/cloud468:webui
         ports:
         - containerPort: 80
