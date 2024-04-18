@@ -1,6 +1,9 @@
 # Start with a base image of Nginx running on Alpine Linux
 FROM node:10-alpine
 
+#Allow to connect to mysql
+RUN npm install mysql
+
 # Set the working directory in the container
 WORKDIR /usr/share/nginx/html
 
