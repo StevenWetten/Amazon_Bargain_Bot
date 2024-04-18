@@ -1,5 +1,5 @@
 # Start with a base image of Nginx running on Alpine Linux
-FROM nginx:alpine
+FROM node:10-alpine
 
 # Set the working directory in the container
 WORKDIR /usr/share/nginx/html
