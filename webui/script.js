@@ -19,7 +19,7 @@ connection.connect(function(err) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var server = app.listen(80,function(){
+var server = app.listen(80, function(){
     console.log('webui running on port 80');
 });
 
