@@ -45,3 +45,26 @@ spec:
               cpu: 10m
           ports:
             - containerPort: 3306
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      labels:
+        app: webui
+    spec:
+      containers:
+        - name: webui
+          image: stevenwetten/mysql:webuibeta
+          ports:
+            - name: http-port
+              containerPort: 80
