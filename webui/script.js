@@ -1,19 +1,37 @@
-function updatePriceValue(value) {
-    document.getElementById('priceValue').textContent = '$' + value;
-}
+var mysql = require('mysql');
+var express = require('express');
+var app = express();
+var http = require('http');
+var fs = require('fs');
+var bodyParser = require('body-parser');
 
-function applyFilters() {
-    const searchInput = document.getElementById('searchBar').value;
-    const minRating = document.getElementById('minRating').value;
-    const priceRange = document.getElementById('priceRange').value;
-    const minReviews = document.getElementById('minReviews').value;
+var connection = mysql.createConnection({
+    host: 'mysql',
+    user: 'bbots',
+    password: 'csc468g6',
+    database: 'bargainBot',
+    port: 3306,
+});
 
-    // Display the filters applied in the console for debugging
-    console.log(`Search: ${searchInput}, Rating: ${minRating}, Price: ${priceRange}, Reviews: ${minReviews}`);
+connection.connect(function(err) {
+    if (err) throw err;
+});
 
-    // Here, integrate with backend or display results manually for demonstration
-    const resultsDiv = document.querySelector('.results');
-    resultsDiv.innerHTML = `<p>Showing results for "${searchInput}" with Rating >= ${minRating} stars, Price <= $${priceRange}, and minimum ${minReviews} reviews.</p>`;
-}
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Additional JavaScript can be added to fetch and display data from the backend.
+var server = app.listen(80,function(){
+    console.log('webui running on port 80');
+});
+
+app.get('/', function(req, res) {
+    res.sendFile(process.cwd() + '/files/');
+});
+
+app.get('/searched', function(req, res) {
+    res.sendFile(process.cwd() + '/files/');
+});
+
+app.post('/sterm', (req, res) => {
+    connection.query('INSERT INTO search VALUE("' + req.body.search + '");');
+    res.redirect('/searched');
+});
