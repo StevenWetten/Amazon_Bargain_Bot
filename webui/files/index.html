@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Product Search UI</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <form action="/sterm" method="POST">
-            search: <input type="text" name="search"><br>
-            <button type="submit">Search</button>
-        </form>
-        <script src="script.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Search UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/sterm" method="POST">
+        search: <input type="text" name="search"><br>
+        <button type="submit">Search</button>
+    </form>
+    <button id="fetchProductsBtn">Fetch Products</button>
+    <div id="productsTable">Products will be displayed here</div>
+
+    <script src="script.js"></script>
+</body>
 </html>
