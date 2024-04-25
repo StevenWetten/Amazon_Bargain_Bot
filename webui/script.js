@@ -35,3 +35,10 @@ app.post('/sterm', (req, res) => {
     connection.query('INSERT INTO search VALUE("' + req.body.search + '");');
     res.redirect('/searched');
 });
+
+app.post('/sortedResults', (req, res) => {
+    connection.query('SELECT * FROM bargainBot.sortedResults;', function(err, results) {
+        if (err) throw err;
+        res.send(results);
+    });
+});
