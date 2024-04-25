@@ -65,7 +65,30 @@ spec:
     spec:
       containers:
         - name: webui
-          image: stevenwetten/mysql:webuibeta
+          image: stevenwetten/mysql:bbotwebui
           ports:
             - name: http-port
               containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sorter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sorter
+  template:
+    metadata:
+      labels:
+        app: sorter
+    spec:
+      containers:
+        - name: sorter
+          image: stevenwetten/mysql:bbotwebui
+          ports:
+            - name: sorter-port
+              containerPort: 3306
