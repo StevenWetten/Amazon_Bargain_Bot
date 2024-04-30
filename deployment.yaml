@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker
+  name: crawler
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: worker
+      app: crawler
   template:
     metadata:
       labels:
-        app: worker
+        app: crawler
     spec:
       containers:
-        - name: worker
-          image: stevenwetten/bargainbot:worker
+        - name: crawler
+          image: stevenwetten/bargainbot:crawler
           ports:
-            - name: worker-port
+            - name: crawler-port
               containerPort: 3306
 
 ---
@@ -45,7 +45,7 @@ spec:
               cpu: 10m
           ports:
             - name: mysql-port
-              containerPort: 3306
+            - containerPort: 3306
 
 ---
 
@@ -69,3 +69,26 @@ spec:
           ports:
             - name: http-port
               containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sorter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sorter
+  template:
+    metadata:
+      labels:
+        app: sorter
+    spec:
+      containers:
+        - name: sorter
+          image: stevenwetten/bargainbot:sorter
+          ports:
+            - name: sorter-port
+              containerPort: 3306
