@@ -32,8 +32,6 @@ app.get('/searched', function(req, res) {
 });
 
 app.post('/sterm', (req, res) => {
-    connection.query('DROP TABLE IF EXISTS search;');
-    connection.query('CREATE TABLE search (term VARCHAR(255));');
     connection.query('INSERT INTO search VALUE("' + req.body.search + '");');
     res.redirect('/searched');
 });
