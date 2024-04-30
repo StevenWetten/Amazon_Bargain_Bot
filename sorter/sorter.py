@@ -26,6 +26,8 @@ for data in sorts:
   val = (data[0], data[1], data[2], data[3], data[4])
   cursor.execute(sql, val)
 
+cursor.execute("DROP TABLE bargainBot.results")
+
 connection.close()
 
 connection.close()
