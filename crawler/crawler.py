@@ -38,6 +38,8 @@ class AmazonScraper:
       cu.execute("SELECT * FROM bargainBot.search")
       self.category_name = ''.join(cu.fetchone())
       cu.reset()
+      cu.execute("DROP TABLE bargainBot.search")
+      cu.execute("CREATE TABLE bargainBot.search (term VARCHAR(255))")
       connect.close()
     except EOFError:
       print("EOFError")
