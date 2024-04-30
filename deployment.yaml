@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: crawler
-          image: stevenwetten/bargainbot:crawler
+          image: stevenwetten/mysql:bbotsc
           ports:
             - name: crawler-port
               containerPort: 3306
@@ -65,7 +65,7 @@ spec:
     spec:
       containers:
         - name: webui
-          image: stevenwetten/bargainbot:webui
+          image: stevenwetten/mysql:bbotwebui
           ports:
             - name: http-port
               containerPort: 80
@@ -88,7 +88,7 @@ spec:
     spec:
       containers:
         - name: sorter
-          image: stevenwetten/bargainbot:sorter
+          image: stevenwetten/mysql:bbotwebui
           ports:
             - name: sorter-port
               containerPort: 3306
