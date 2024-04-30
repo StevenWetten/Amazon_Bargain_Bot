@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: stevenwetten/mysql:bbotdbase
+          image: stevenwetten/bargainbot:mysql
           resources:
             requests:
               cpu: 10m
