@@ -26,7 +26,7 @@ class AmazonScraper:
     opt.add_argument('--log-level=OFF')
     opt.add_experimental_option('excludeSwitches',['enable-logging'])
 
-    url = "https://www.amazon.in/"
+    url = "https://www.amazon.com/"
     self.driver = webdriver.Chrome(options = opt)
     self.driver.get(url)
     time.sleep(3)
