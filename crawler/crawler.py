@@ -46,7 +46,7 @@ class AmazonScraper:
       exit()
 
     self.formatted_category_name = self.category_name.replace(" ", "+")
-    category_url = "https://www.amazon.in/s?k={}&ref=nb_sb_noss"
+    category_url = "https://www.amazon.com/s?k={}&ref=nb_sb_noss"
     category_url = category_url.format(self.formatted_category_name)
     self.driver.get(category_url)
     return category_url
@@ -63,7 +63,7 @@ class AmazonScraper:
       item = page_results[i]
       a_tag_item = item.h2.a
       description = a_tag_item.text.strip()
-      category_url = "https://www.amazon.in/" + a_tag_item.get('href')
+      category_url = "https://www.amazon.com/" + a_tag_item.get('href')
 
       try:
         product_price_location = item.find('span', 'a-price')
